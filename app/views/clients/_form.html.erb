@@ -1,0 +1,38 @@
+<%=  form_with(model: client) do |form| %>
+  <% if client.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+        <% client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<form>
+  <div class="mb-3 col-sm-2">
+    <%= form.label :First_name, style: "display: block", class:"form-label" %>
+     <%= form.text_field :First_name, class:"form-control form-control-sm" %>
+  </div>
+  <div class="mb-3 col-sm-2">
+   <%= form.label :Last_name, style: "display: block", class:"form-label" %>
+    <%= form.text_field :Last_name, class:"form-control form-control-sm" %>
+  </div>
+  <div class="mb-3 col-sm-2">
+   <%= form.label :Phone, style: "display: block", class:"form-label" %>
+     <%= form.text_field :Phone, class:"form-control form-control-sm" %>
+  </div>
+  <div class="mb-3 col-sm-2">
+    <%= form.label :Car, style: "display: block", class:"form-label" %>
+    <%= form.text_field :Car, class:"form-control form-control-sm" %>
+  </div>
+  <div class="mb-3 col-sm-2">
+    <%= form.label :Model, style: "display: block", class:"form-label" %>
+    <%= form.text_field :Model, class:"form-control form-control-sm" %>
+  </div>
+  <%= form.submit  class:"btn btn-success btn-sm" %>
+</form>
+
+<% end %>

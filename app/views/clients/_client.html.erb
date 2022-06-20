@@ -1,0 +1,27 @@
+<div id="<%= dom_id client %>">
+ 
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">
+        <%= client.First_name %>
+        <%= client.Last_name %>
+        </h1>
+        <p class="col-md-8 fs-4"> 
+         <strong>Phone:</strong>
+         <%= client.Phone %>
+         <br>
+          <strong>Car:</strong>
+          <%= client.Car %>
+          <br>
+          <strong>Model:</strong>
+          <%= client.Model %>
+        </p>
+        <br>
+       <%= link_to "Back to clients", clients_path,  class:"btn btn-secondary btn-sm" %>
+        <%= link_to "Edit this client", edit_client_path(@client),  class:"btn btn-success btn-sm" %>
+        <br>
+        <br>
+        <%= button_to "Delete", @client, method: :delete, class:"btn btn-danger btn-sm" %>
+    </div> 
+
+</div>
