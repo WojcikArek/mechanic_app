@@ -1,6 +1,8 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  
   # GET /clients or /clients.json
   def index
     @clients = Client.all
@@ -57,6 +59,12 @@ class ClientsController < ApplicationController
     end
   end
 
+  def correct_user
+    @friend = current_user.friends.find_by(id: params[:id])
+    redirect_to friends_path, notice: "Not Authorized To Edit This Client" if @friend.nil?
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
@@ -65,6 +73,6 @@ class ClientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:First_name, :Last_name, :Phone, :Car, :Model)
+      params.require(:client).permit(:First_name, :Last_name, :Phone, :Car, :Model, :user_id)
     end
 end
