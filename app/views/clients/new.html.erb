@@ -1,8 +1,16 @@
 <br>
-<h1>New client</h1>
 
-<%= render "form", client: @client %>
+<% if user_signed_in? %>
 
-<br>
+    <h1>New client</h1>
 
- <%= link_to "Back to clients", clients_path, class:"btn btn-secondary btn-sm" %>
+    <%= render "form", client: @client %>
+
+    <br>
+
+    <%= link_to "Back to clients", clients_path, class:"btn btn-secondary btn-sm" %>
+<% else %>
+
+<p>Please to Sing In</p>
+
+<%end%>
