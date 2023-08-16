@@ -1,37 +1,45 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Clients List</h1>
+<% if user_signed_in? %>
 
-<table class="table  table-hover table-bordered">
-    <thead>
-      <tr class="table-active">
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Car</th>
-        <th>Model</th>
-        <th></th>
-      </tr>
-    </thead>
+  <h1>Clients List</h1>
 
-<tbody>
-  <% @clients.each do |client| %>
-   <tr>
-   <td>
-   <%=client.First_name%>  <%= client.Last_name%>
-   </td>
-   <td>
-    <%= client.Phone%>
-   </td>
-   <td>
-    <%= client.Car%>
-   </td>
-   <td>
-    <%= client.Model%>
-   </td>
+  <table class="table  table-hover table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Car</th>
+          <th>Model</th>
+          <th></th>
+        </tr>
+      </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <% if client.user == current_user %>
+    <tr>
     <td>
-      <%= link_to "Show", client, class:"btn btn-secondary btn-sm" %>
-  </td>
-  <% end %>
+    <%=client.First_name%>  <%= client.Last_name%>
+    </td>
+    <td>
+      <%= client.Phone%>
+    </td>
+    <td>
+      <%= client.Car%>
+    </td>
+    <td>
+      <%= client.Model%>
+    </td>
+      <td>
+        <%= link_to "Show", client, class:"btn btn-secondary btn-sm" %>
+    </td>
+    <% end %>
+    <%end%>
 
-</table>
-<%= link_to "New client", new_client_path, class:"btn btn-success btn-sm" %>
+  </table>
+  <%= link_to "New client", new_client_path, class:"btn btn-success btn-sm" %>
+<% else %>
+
+<p>Please to Sing In</p>
+
+<%end%>

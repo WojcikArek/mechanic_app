@@ -32,6 +32,9 @@
     <%= form.label :Model, style: "display: block", class:"form-label" %>
     <%= form.text_field :Model, class:"form-control form-control-sm" %>
   </div>
+  <div class="mb-3 col-sm-2">
+     <%= form.number_field :user_id, id: :client, class:"form-control", value: current_user.id, type: :hidden %>
+  </div>
   <%= form.submit  class:"btn btn-success btn-sm" %>
 </form>
 
